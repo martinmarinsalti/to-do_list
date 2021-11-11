@@ -29,7 +29,6 @@ public class TaskController {
 	@PostMapping("/")
 	public String addTask(@RequestParam String nt) {
 		ts.loadTask(nt);
-		System.out.println("PASA");
 		return "redirect:/";
 	}
 	
@@ -46,9 +45,16 @@ public class TaskController {
 		}
 	}
 		
-	@GetMapping("/")
-	public String editingTask(@PathVariable ("id") Integer idEd) {
-		ts.editTask(idEd);
+	@PostMapping("/check")
+	public String editingTask(@RequestParam ("idEd") Integer idEd) {
+		System.out.println("pasa3333");
+		ts.editTaskDo(idEd);
 		return "redirect:/";
+	}
+	
+	@PostMapping("/edit")
+	public String editarTaskName (@RequestParam ("new_task") String new_task, @RequestParam ("id") Integer id){
+		ts.editTask(id, new_task);
+		return "redirect:/";		
 	}
 }

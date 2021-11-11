@@ -45,7 +45,7 @@ public class TaskService {
 	}
 	
 	@Transactional
-	public void editTask(Integer id) {
+	public void editTaskDo(Integer id) {
 		Task t = tr.findById(id).get();
 		
 		if(t.getDO()) {
@@ -55,5 +55,15 @@ public class TaskService {
 		}
 		
 		tr.save(t);
+	}
+	
+	@Transactional
+	public Task editTask(Integer id, String newTask) {
+		
+		Task  etn = tr.getById(id);
+		etn.setTASK(newTask);
+		
+		return tr.save(etn);
+		
 	}
 }
